@@ -1,0 +1,109 @@
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --bg: #03060a;
+  --bg-panel: rgba(7, 14, 20, 0.72);
+  --line: rgba(151, 190, 201, 0.16);
+  --line-strong: rgba(95, 231, 242, 0.38);
+  --ink: #e8f3f5;
+  --ink-dim: #a0b4bb;
+  --ink-faint: #61747b;
+  --accent: #5fe7f2;
+  --accent-soft: rgba(95, 231, 242, 0.12);
+  --engine: #ff7a2d;
+  --display: 'Bahnschrift', 'Arial Narrow', 'Microsoft YaHei', sans-serif;
+  --mono: 'Cascadia Mono', 'Consolas', 'SFMono-Regular', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.app-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 62% 28%, rgba(22, 44, 53, 0.22), transparent 55%),
+    var(--bg);
+}
+
+.scene-canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+.screen-grain,
+.screen-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.screen-grain {
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.screen-vignette {
+  background:
+    radial-gradient(120% 90% at 50% 44%, transparent 44%, rgba(0, 0, 0, 0.18) 74%, rgba(0, 0, 0, 0.58) 100%),
+    linear-gradient(180deg, rgba(1, 4, 7, 0.38) 0%, transparent 18%, transparent 76%, rgba(1, 4, 7, 0.52) 100%);
+  z-index: 21;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
